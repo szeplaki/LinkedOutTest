@@ -22,6 +22,8 @@ public class BaseModel {
     protected WebElement passwordField;
     @FindBy(id = "login-btn")
     protected WebElement loginButton;
+    @FindBy(id = "logout")
+    protected WebElement logoutButton;
 
     public BaseModel() {
         this.webDriver = WebDriverService.getInstance().getWebDriver();
@@ -105,5 +107,6 @@ public class BaseModel {
 
     public void getLoginPage(){
         webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/login");
+        waitUntilWebElementIsClickable("id", "login-btn");
     }
 }

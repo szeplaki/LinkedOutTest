@@ -6,4 +6,8 @@ public class LoginModel extends BaseModel {
         passwordField.sendKeys(password);
         loginButton.click();
     }
+
+    public String getLogoutButtonText(){
+        return logoutButton.getText();
+    }
 }
