@@ -15,7 +15,7 @@ public class StudentPageTest {
 
     @AfterEach
     public void closeTab() {
-        WebDriverService.getInstance().getWebDriver();
+        WebDriverService.getInstance().quitWebDriver();
     }
 
     @Test
