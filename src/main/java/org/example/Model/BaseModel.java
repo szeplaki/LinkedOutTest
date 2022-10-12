@@ -96,7 +96,7 @@ public class BaseModel {
     }
 
     public void openUrlWithSpecificPathAndMaximizeWindowSize(String path){
-        webDriver.get(FileReader.getValueByKeyFromConfigProperties("jira.baseurl") + path);
+        webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + path);
         webDriver.manage().window().maximize();
     }
 

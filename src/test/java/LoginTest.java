@@ -36,8 +36,18 @@ public class LoginTest {
 
         loginModel.waitUntilWebElementIsVisible("className", "login-error");
         Assertions.assertEquals(loginModel.getIncorrectLoginMsg(), "The username or password is incorrect!");
+
+        loginModel.doLogin();
     }
 
     @Test
-    public void loginWithInvalidPassword(){}
+    public void loginWithInvalidPassword(){
+        loginModel.loginWithProvidedUsernameAndPassword(FileReader.getValueByKeyFromConfigProperties("linkedout.username"),
+                "whatever");
+
+        loginModel.waitUntilWebElementIsVisible("className", "login-error");
+        Assertions.assertEquals(loginModel.getIncorrectLoginMsg(), "The username or password is incorrect!");
+
+        loginModel.doLogin();
+    }
 }
