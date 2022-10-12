@@ -16,11 +16,11 @@ public class BaseModel {
     protected final WebDriver webDriver;
     protected final WebDriverWait driverWait;
 
-    @FindBy(id = "login-form-username")
+    @FindBy(xpath = "//*[@id='root']//form/input[@type='text']")
     protected WebElement usernameField;
-    @FindBy(id = "login-form-password")
+    @FindBy(xpath = "//*[@id='root']//form/input[@type='password']")
     protected WebElement passwordField;
-    @FindBy(id = "login-form-submit")
+    @FindBy(id = "login-btn")
     protected WebElement loginButton;
 
     public BaseModel() {
