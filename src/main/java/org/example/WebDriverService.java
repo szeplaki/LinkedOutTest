@@ -14,7 +14,7 @@ public class WebDriverService {
 
     public WebDriver getWebDriver() {
         if (webDriver != null) return webDriver;
-        return createWebDriver(FileReader.getValueByKey("browser.type"));
+        return createWebDriver(FileReader.getValueByKeyFromConfigProperties("browser.type"));
     }
 
     public void quitWebDriver()
