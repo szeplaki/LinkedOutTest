@@ -28,4 +28,12 @@ public class StudentPageTest {
 
         Assertions.assertEquals("List of all available CoodCooler", studentPageModel.getStudentHeaderText());
     }
+
+    @Test
+    public void openStudentPageWithoutLogin(){
+        studentPageModel.openUrlWithSpecificPathAndMaximizeWindowSize("/student/list-all");
+        studentPageModel.waitUntilWebElementIsVisible("xpath", "//*[@id='root']/p");
+
+        Assertions.assertEquals("You are not authorized to see this webpage!", studentPageModel.getNotAuthorizedMsg());
+    }
 }
