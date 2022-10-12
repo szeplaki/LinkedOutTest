@@ -28,4 +28,26 @@ public class LoginTest {
         loginModel.waitUntilWebElementIsClickable("id", "logout");
         Assertions.assertEquals("Logout", loginModel.getLogoutButtonText());
     }
+
+    @Test
+    public void loginWithInvalidUsername(){
+        loginModel.loginWithProvidedUsernameAndPassword("whatever",
+                FileReader.getValueByKeyFromConfigProperties("linkedout.password"));
+
+        loginModel.waitUntilWebElementIsVisible("className", "login-error");
+        Assertions.assertEquals(loginModel.getIncorrectLoginMsg(), "The username or password is incorrect!");
+
+        loginModel.doLogin();
+    }
+
+    @Test
+    public void loginWithInvalidPassword(){
+        loginModel.loginWithProvidedUsernameAndPassword(FileReader.getValueByKeyFromConfigProperties("linkedout.username"),
+                "whatever");
+
+        loginModel.waitUntilWebElementIsVisible("className", "login-error");
+        Assertions.assertEquals(loginModel.getIncorrectLoginMsg(), "The username or password is incorrect!");
+
+        loginModel.doLogin();
+    }
 }
