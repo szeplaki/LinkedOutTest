@@ -15,7 +15,7 @@ public class LogoutTest {
 
     @AfterEach
     public void closeTab() {
-        WebDriverService.getInstance().getWebDriver();
+        WebDriverService.getInstance().quitWebDriver();
     }
 
     @Test
