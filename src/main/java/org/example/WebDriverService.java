@@ -17,11 +17,11 @@ public class WebDriverService {
         return createWebDriver(FileReader.getValueByKeyFromConfigProperties("browser.type"));
     }
 
-    public void quitWebDriver()
-    {
+    public void quitWebDriver() {
         webDriver.quit();
         webDriver = null;
     }
+
     private WebDriver createWebDriver(String browserType) {
         if ("firefox".equals(browserType)) {
             webDriver = new FirefoxDriver();
