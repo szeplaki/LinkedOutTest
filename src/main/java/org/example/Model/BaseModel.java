@@ -31,7 +31,7 @@ public class BaseModel {
         PageFactory.initElements(webDriver, this);
     }
 
-    protected void setUsername(String username){
+    protected void setUsername(String username) {
         this.usernameField.sendKeys(username);
     }
 
@@ -39,17 +39,18 @@ public class BaseModel {
         this.passwordField.sendKeys(password);
     }
 
-    protected void clickOnLoginButton(){
+    protected void clickOnLoginButton() {
         loginButton.click();
     }
 
     /**
      * The webDriver waits until the selected webElement is visible, or 15 sec. maximum duration.
+     *
      * @param type the type of the element you are looking for: id, xpath, css or className.
-     * @param id the selected element's selector.
+     * @param id   the selected element's selector.
      */
-    public void waitUntilWebElementIsVisible(String type, String id){
-        switch (type){
+    public void waitUntilWebElementIsVisible(String type, String id) {
+        switch (type) {
             case "id":
                 driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
             case "xpath":
@@ -66,11 +67,12 @@ public class BaseModel {
 
     /**
      * The webDriver waits until the selected webElement is clickable, or 15 sec. maximum duration.
+     *
      * @param type type the type of the element you are looking for: id, xpath, css or className.
-     * @param id the selected element's selector.
+     * @param id   the selected element's selector.
      */
-    public void waitUntilWebElementIsClickable(String type, String id){
-        switch (type){
+    public void waitUntilWebElementIsClickable(String type, String id) {
+        switch (type) {
             case "id":
                 driverWait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
                 break;
@@ -86,7 +88,7 @@ public class BaseModel {
         }
     }
 
-    public void doLogin(){
+    public void doLogin() {
         webDriver.navigate().to(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/login");
         webDriver.manage().window().maximize();
 
@@ -95,17 +97,16 @@ public class BaseModel {
         clickOnLoginButton();
     }
 
-    public void openUrlWithSpecificPathAndMaximizeWindowSize(String path){
+    public void openUrlWithSpecificPathAndMaximizeWindowSize(String path) {
         webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + path);
         webDriver.manage().window().maximize();
     }
 
-    public void waitUntilLoggedIn()
-    {
+    public void waitUntilLoggedIn() {
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("header-details-user-fullname")));
     }
 
-    public void getLoginPage(){
+    public void getLoginPage() {
         webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/login");
         waitUntilWebElementIsClickable("id", "login-btn");
     }

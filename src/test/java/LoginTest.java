@@ -10,27 +10,27 @@ public class LoginTest {
     private LoginModel loginModel;
 
     @BeforeEach
-    public void setProperties(){
+    public void setProperties() {
         loginModel = new LoginModel();
         loginModel.getLoginPage();
     }
 
     @AfterEach
-    public void closeTab(){
+    public void closeTab() {
         WebDriverService.getInstance().getWebDriver();
     }
 
     @Test
-    public void successfulLogin(){
+    public void successfulLogin() {
         loginModel.loginWithProvidedUsernameAndPassword(FileReader.getValueByKeyFromConfigProperties("linkedout.username"),
-                                                    FileReader.getValueByKeyFromConfigProperties("linkedout.password"));
+                FileReader.getValueByKeyFromConfigProperties("linkedout.password"));
 
         loginModel.waitUntilWebElementIsClickable("id", "logout");
         Assertions.assertEquals("Logout", loginModel.getLogoutButtonText());
     }
 
     @Test
-    public void loginWithInvalidUsername(){
+    public void loginWithInvalidUsername() {
         loginModel.loginWithProvidedUsernameAndPassword("whatever",
                 FileReader.getValueByKeyFromConfigProperties("linkedout.password"));
 
@@ -41,7 +41,7 @@ public class LoginTest {
     }
 
     @Test
-    public void loginWithInvalidPassword(){
+    public void loginWithInvalidPassword() {
         loginModel.loginWithProvidedUsernameAndPassword(FileReader.getValueByKeyFromConfigProperties("linkedout.username"),
                 "whatever");
 
