@@ -25,6 +25,7 @@ public class LogoutTest {
         logoutModel.waitUntilWebElementIsClickable("id", "logout");
         logoutModel.clickOnLogoutButton();
 
+        logoutModel.openBaseUrl();
         logoutModel.waitUntilWebElementIsClickable("id", "login");
         Assertions.assertEquals("Login", logoutModel.getLoginButtonText());
     }

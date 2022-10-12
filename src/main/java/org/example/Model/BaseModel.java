@@ -110,4 +110,8 @@ public class BaseModel {
         webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/login");
         waitUntilWebElementIsClickable("id", "login-btn");
     }
+
+    public void openBaseUrl(){
+        webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl"));
+    }
 }
