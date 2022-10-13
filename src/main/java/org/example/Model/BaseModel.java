@@ -95,6 +95,7 @@ public class BaseModel {
         setUsername(FileReader.getValueByKeyFromConfigProperties("linkedout.username"));
         setPassword(FileReader.getValueByKeyFromConfigProperties("linkedout.password"));
         clickOnLoginButton();
+        waitUntilWebElementIsVisible("xpath", "//h2[text() = 'LnkdOut']");
     }
 
     public void openUrlWithSpecificPathAndMaximizeWindowSize(String path) {
