@@ -39,6 +39,9 @@ public class StudentRegisterModel extends BaseModel {
     @FindBy(id = "register-btn")
     private WebElement registerButton;
 
+    @FindBy(id = "student-list")
+    private WebElement studentListButton;
+
     public void clickRegisterButton() {
         registerButton.click();
     }
@@ -89,6 +92,16 @@ public class StudentRegisterModel extends BaseModel {
             return true;
         }
         catch (TimeoutException ignore) {
+            return false;
+        }
+    }
+
+    public boolean isLoggedIn() {
+        WebDriverWait shortWait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
+        try {
+            shortWait.until(ExpectedConditions.visibilityOf(studentListButton));
+            return true;
+        } catch (TimeoutException ignore) {
             return false;
         }
     }
