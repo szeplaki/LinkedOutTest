@@ -41,12 +41,15 @@ public class StudentRegisterTest {
 
          model.clickRegisterButton();
 
-        Assertions.assertTrue(model.isMainPage(),"Redirected to main page after register");
+         boolean redirectedToMainPage = model.isMainPage();
 
         LoginModel loginModel = new LoginModel();
         loginModel.getLoginPage();
         loginModel.loginWithProvidedUsernameAndPassword(name, password);
 
-        Assertions.assertTrue(model.isMainPage(), "Redirected to main page after login");
+        boolean isLoggedIn = model.isLoggedIn();
+
+        Assertions.assertTrue(redirectedToMainPage,"Registration happened without problem");
+        Assertions.assertTrue(isLoggedIn,"Successfully logged in with registered account");
     }
 }
