@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 public class MessageTest {
     private MessageModel messageModel;
 
@@ -20,17 +22,42 @@ public class MessageTest {
     }
 
     @Test
-    public void sendMessageLoggedIn(){
+    public void sendMessageLoggedIn() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(100 - 1) + 1;
+        String subject = "You are fired!";
+        String from = "Darren";
+        String msg = String.format("You are fired, don't come work tomorrow. Id: %d!", randomNumber);
 
+        messageModel.doLogin();
+        getOwnProfile();
+        messageModel.clickOnSendMessage();
+        messageModel.waitUntilWebElementIsClickable("id", "send-message-btn");
+
+        messageModel.sendMessage(subject, from, msg);
+
+        getOwnProfile();
+        messageModel.clickOnInbox();
+        messageModel.waitUntilWebElementIsVisible("className", "message-info");
+
+        Assertions.assertTrue(messageModel.sentMessageFound(subject, from, msg));
     }
 
     @Test
-    public void sendMessageLoggedOut(){
+    public void sendMessageLoggedOut() {
         messageModel.doLogin();
         messageModel.openUrlWithSpecificPathAndMaximizeWindowSize("/student/list-all");
 
         messageModel.waitUntilWebElementIsVisible("xpath", "//*[@id='root']/p");
 
         Assertions.assertEquals("You are not authorized to see this webpage!", messageModel.getNotAuthorizedMsg());
+    }
+
+    private void getOwnProfile() {
+        messageModel.openUrlWithSpecificPathAndMaximizeWindowSize("/student/list-all");
+        messageModel.waitUntilWebElementIsVisible("className", "AllStudentHeader");
+
+        messageModel.clickOnOwnProfile();
+        messageModel.waitUntilWebElementIsVisible("xpath", "//h1[text() = 'My profile:']");
     }
 }
