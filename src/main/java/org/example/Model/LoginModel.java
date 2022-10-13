@@ -20,4 +20,8 @@ public class LoginModel extends BaseModel {
     public String getIncorrectLoginMsg() {
         return incorrectLoginMsg.getText();
     }
+
+    public String getLoginUrl() {
+        return webDriver.getCurrentUrl();
+    }
 }

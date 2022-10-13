@@ -50,4 +50,12 @@ public class LoginTest {
 
         loginModel.doLogin();
     }
+
+    @Test
+    public void tryToLoginWithEmptyFields() {
+        loginModel.loginWithProvidedUsernameAndPassword("", "");
+
+        Assertions.assertEquals(loginModel.getLoginUrl(),
+                FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/login");
+    }
 }
