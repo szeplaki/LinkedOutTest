@@ -78,6 +78,7 @@ public class StudentRegisterModel extends BaseModel {
     }
 
     public void openForm() {
+		// Could not find a way to click on the button
         webDriver.get(FileReader.getValueByKeyFromConfigProperties("linkedout.baseurl") + "/student/registration");
     }
 
